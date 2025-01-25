@@ -19,5 +19,4 @@ def train_model(data_path="data.csv", model_path="model.pkl"):
 
     return model
 
-
-# Add a newline at the end of the file
+# Ensure the file ends with exactly one newline
