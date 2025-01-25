@@ -6,7 +6,7 @@ class TestModel(unittest.TestCase):
     def test_train_model(self):
         # Test training with mock data
         model = train_model(
-            data_path="test_data.csv",
+            data_path="data.csv",
             model_path="test_model.pkl"
         )
         self.assertIsNotNone(model)
