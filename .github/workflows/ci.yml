@@ -35,43 +35,24 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt pytest
-      - name: Check data.csv
+      - name: Verify data.csv exists
         run: |
           echo "Checking if data.csv exists..."
           ls -l data.csv || echo "data.csv is missing"
       - name: Run tests
         run: pytest
-      - name: Check model.pkl
-        run: |
-          echo "Checking if model.pkl exists..."
-          ls -l model.pkl || echo "model.pkl is missing"
-      - name: Upload Model Artifact
-        if: success()  # Only upload if all previous steps succeeded
-        uses: actions/upload-artifact@v3
-        with:
-          name: model
-          path: model.pkl
 
   deploy:
     runs-on: ubuntu-latest
     needs: test
     steps:
       - uses: actions/checkout@v3
-      - name: Download Model Artifact
-        uses: actions/download-artifact@v3
+      - name: Set up Environment
+        uses: actions/setup-python@v4
         with:
-          name: model
-      - name: Check Downloaded Artifact
-        run: |
-          echo "Checking if model.pkl exists after download..."
-          ls -l model.pkl || echo "model.pkl is missing after download"
+          python-version: '3.12'
       - name: Deploy Model
         run: |
-          echo "Deploying model artifact"
-          mkdir -p artifacts
-          cp model.pkl artifacts/
-      - name: Upload Deployed Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: trained-model
-          path: artifacts/model.pkl
+          echo "Deploying model..."
+          # Add your deployment logic here
+          echo "Simulated deployment complete!"
