@@ -2,6 +2,7 @@ import pandas as pd
 from sklearn.linear_model import LinearRegression
 import joblib
 
+
 def train_model(data_path="data.csv", model_path="model.pkl"):
     # Load dataset
     data = pd.read_csv(data_path)
@@ -17,3 +18,5 @@ def train_model(data_path="data.csv", model_path="model.pkl"):
     print("Model trained and saved to", model_path)
 
     return model
+
+# Ensure the file ends with exactly one newline
